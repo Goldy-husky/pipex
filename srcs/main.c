@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:13:58 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 16:54:20 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 17:03:20 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static t_error	launch_it(char ***param, char **arge, t_fd *fd)
 	char	*exec_file[2];
 	int		*status;
 	t_fd	pfd[2];
+	pid_t	father;
 
 	status = NULL;
 	if (!(exec_file[0] = find_exec(param[1][0], arge))
@@ -25,7 +26,12 @@ static t_error	launch_it(char ***param, char **arge, t_fd *fd)
 		return (ERROR_EXEC);
 	if (pipe(pfd) == -1)
 		return (ERROR_PIPE);
-
+	father = fork();
+	if (father == 0)
+		exec_child(param, arge, fd);
+	if (father > 0)
+		exec_father(param, arge, fd);
+	return (0);
 }
 
 static char		**add_param(char *input);
