@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 13:47:48 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 15:54:17 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 16:54:17 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	error_dsp(t_error idx)
 		"Parse error",
 		"Args missing",
 		"Error while parsing executables",
-		"Error while open files"
+		"Error while open files",
+		"Error while creating pipe"
 	}
 
 	ft_putchar_fd(errors[idx], 2);

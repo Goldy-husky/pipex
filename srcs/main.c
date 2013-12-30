@@ -6,26 +6,29 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:13:58 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 15:59:15 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 16:54:20 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static int	launch_it(char ***param, char **arge)
+static t_error	launch_it(char ***param, char **arge, t_fd *fd)
 {
 	pid_t	father;
 	char	*exec_file[2];
 	int		*status;
+	t_fd	pfd[2];
 
 	status = NULL;
 	if (!(exec_file[0] = find_exec(param[1][0], arge))
 		|| !(exec_file[1] = find_exec(param[2][0], arge)))
 		return (ERROR_EXEC);
+	if (pipe(pfd) == -1)
+		return (ERROR_PIPE);
 
 }
 
-static char	**add_param(char *input);
+static char		**add_param(char *input);
 {
 	char	**rtn;
 
@@ -36,7 +39,7 @@ static char	**add_param(char *input);
 	return (rtn);
 }
 
-static char	***parse_input(int argc, char **argv)
+static char		***parse_input(int argc, char **argv)
 {
 	char	***rtn;
 	int		shift;
@@ -54,7 +57,7 @@ static char	***parse_input(int argc, char **argv)
 		return (NULL);
 }
 
-int			main(int argc, char **argv, char **arge)
+int				main(int argc, char **argv, char **arge)
 {
 	char	***param;
 	int		error;

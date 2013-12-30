@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:16:11 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 15:55:21 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 16:54:18 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef enum	e_error
 	ERROR_PARSE,
 	ERROR_MISSING_ARGS,
 	ERROR_EXEC,
-	ERROR_OPENFILE
+	ERROR_OPENFILE,
+	ERROR_PIPE
 }				t_error;
 
 #endif
