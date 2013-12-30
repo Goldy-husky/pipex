@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
+/*   By: goldy <goldy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 14:25:01 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 17:50:00 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 23:45:54 by goldy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char		*find_exec(char *str, char **arge)
 {
 	char	**path;
 	char	*rtn;
-	int		i;
 
 	if ((ft_strchr(str, '/')))
 	{
@@ -62,7 +61,6 @@ char		*find_exec(char *str, char **arge)
 		path = ft_strsplit(get_env("PATH", arge), ':');
 	else
 		return (NULL);
-	i = 0;
 	rtn = test_exec(path, str);
 	free_str_array(path);
 	return (rtn);
