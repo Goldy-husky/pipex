@@ -6,7 +6,7 @@
 #    By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/19 15:09:23 by cmehay            #+#    #+#              #
-#    Updated: 2013/12/30 10:50:02 by cmehay           ###   ########.fr        #
+#    Updated: 2013/12/30 18:29:29 by cmehay           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,7 +22,7 @@ LIBDIR = libft
 LIBFILES = $(addprefix $(LIBDIR)/, $(LIB))
 OBJ = $(SRC:.c=.o)
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
