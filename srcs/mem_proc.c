@@ -6,13 +6,13 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 14:44:07 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 14:56:52 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 17:28:43 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	free_str_array(char ***arge)
+void	free_str_array(char **arge)
 {
 	char	**tmp;
 

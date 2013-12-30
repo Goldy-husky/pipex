@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:16:11 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 16:54:18 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 17:28:51 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,18 @@ typedef enum	e_error
 	ERROR_OPENFILE,
 	ERROR_PIPE
 }				t_error;
+
+char	*find_exec(char *str, char **arge);
+
+char	*get_env(char *key, char **arge);
+
+int		error_dsp(t_error idx);
+
+t_fd	*open_files(char ***param);
+
+void	free_str_array(char **arge);
+
+int		exec_child(char ***param, char **arge, t_fd *pfd, t_fd fd);
+int		exec_father(char ***param, char **arge, t_fd *pfd, t_fd fd);
 
 #endif

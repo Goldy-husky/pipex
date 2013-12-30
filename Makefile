@@ -15,14 +15,14 @@ SRCDIR = srcs
 HEADDIR = includes
 HEAD = $(NAME).h
 HEADFILES = $(addprefix $(HEADDIR)/, $(HEAD))
-SRC = main.c
+SRC = main.c env.c errors.c exec.c files.c mem_proc.c pipe.c
 SRCFILES = $(addprefix $(SRCDIR)/, $(SRC))
 LIB = libft.a
 LIBDIR = libft
 LIBFILES = $(addprefix $(LIBDIR)/, $(LIB))
 OBJ = $(SRC:.c=.o)
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -g -Wall -Werror -Wextra
 
 all: $(NAME)
 

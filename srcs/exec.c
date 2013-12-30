@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 14:25:01 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 16:05:06 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/30 17:50:00 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ static char	*is_exec(char *path, char *file)
 	return (NULL);
 }
 
-static char	*test_exec(char **path, char *file)
+static char	*test_exec(char **path, char *str)
 {
-	int	i;
+	int		i;
+	char	*file;
 
 	i = 0;
 	while (path[i])
@@ -48,7 +49,6 @@ static char	*test_exec(char **path, char *file)
 char		*find_exec(char *str, char **arge)
 {
 	char	**path;
-	char	*file;
 	char	*rtn;
 	int		i;
 
@@ -64,6 +64,6 @@ char		*find_exec(char *str, char **arge)
 		return (NULL);
 	i = 0;
 	rtn = test_exec(path, str);
-	free_str_array(path, str, i - 1);
-	return (NULL);
+	free_str_array(path);
+	return (rtn);
 }
