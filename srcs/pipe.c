@@ -3,31 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlanglet <mlanglet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 16:46:05 by mlanglet          #+#    #+#             */
-/*   Updated: 2013/12/30 17:12:17 by mlanglet         ###   ########.fr       */
+/*   Updated: 2013/12/31 16:38:00 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int		exec_child(char ***param, char **arge, t_fd *pfd, t_fd fd)
+int		exec_child(char *exec, char ***param, char **arge, t_fdstruct fd)
 {
-	close(pfd[1]);
-	dup2(pfd[0], 0);
-	dup2(fd, 1);
-	close(pfd[0]);
-	execve(param[2][0], param[2], arge);
-	return (0);
+	t_fd	*pipe;
+
+	pipe = fd.pipe;
+	close(pipe[1]);
+	dup2(pipe[0], 0);
+	dup2(fd.out_file, 1);
+	close(pipe[0]);
+	return (execve(exec, param[2], arge));
 }
 
-int		exec_father(char ***param, char **arge, t_fd *pfd, t_fd fd)
+int		exec_father(char *exec, char ***param, char **arge, t_fdstruct fd)
 {
-	close(pfd[0]);
-	dup2(pfd[1], 1);
-	dup2(fd, 0);
-	close(pfd[1]);
-	execve(param[1][0], param[1], arge);
-	return (0);
+	t_fd	*pipe;
+
+	pipe = fd.pipe;
+	close(pipe[0]);
+	dup2(pipe[1], 1);
+	dup2(fd.in_file, 0);
+	close(pipe[1]);
+	return (execve(exec, param[1], arge));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: goldy <goldy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:13:58 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/30 23:45:32 by goldy            ###   ########.fr       */
+/*   Updated: 2013/12/31 16:36:24 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 static t_error	launch_it(char ***param, char **arge, t_fd *fd)
 {
-	pid_t	father;
-	char	*exec_file[2];
-	t_fd	pfd[2];
+	pid_t		father;
+	char		*exec_file[2];
+	t_fdstruct	stct_fd;
 
 	if (!(exec_file[0] = find_exec(param[1][0], arge))
 		|| !(exec_file[1] = find_exec(param[2][0], arge)))
 		return (ERROR_EXEC);
-	if (pipe(pfd) == -1)
+	if (pipe(stct_fd.pipe) == -1)
 		return (ERROR_PIPE);
+	stct_fd.in_file = fd[0];
+	stct_fd.out_file = fd[1];
 	father = fork();
 	if (father == 0)
-		exec_child(param, arge, fd, fd[1]);
+	{
+		if (exec_child(exec_file[1], param, arge, stct_fd) == -1)
+			return (ERROR_EXEC);
+	}
 	if (father > 0)
-		exec_father(param, arge, fd, fd[0]);
+	{
+		if (exec_father(exec_file[0], param, arge, stct_fd) == -1)
+			return (ERROR_EXEC);
+	}
 	return (0);
 }
 
