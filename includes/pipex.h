@@ -6,7 +6,7 @@
 /*   By: cmehay <cmehay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/30 12:16:11 by cmehay            #+#    #+#             */
-/*   Updated: 2013/12/31 16:20:44 by cmehay           ###   ########.fr       */
+/*   Updated: 2013/12/31 17:12:09 by cmehay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-typedef int	t_fd;
+typedef int		t_fd;
 
 typedef enum	e_error
 {
